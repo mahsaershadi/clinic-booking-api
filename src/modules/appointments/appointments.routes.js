@@ -11,6 +11,7 @@ import {
 
 const router = Router();
 
+//creating appointment route
 router.post(
   '/',
   authMiddleware,
@@ -19,6 +20,7 @@ router.post(
   asyncHandler(appointmentsController.createAppointment)
 );
 
+//seeing appontment
 router.get(
   '/my',
   authMiddleware,
@@ -26,6 +28,7 @@ router.get(
   asyncHandler(appointmentsController.getMyAppointments)
 );
 
+//cancelling appointment
 router.patch(
   '/:id/cancel',
   authMiddleware,

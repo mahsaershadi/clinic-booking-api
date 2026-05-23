@@ -1,5 +1,6 @@
 import * as appointmentsService from './appointments.service.js';
 
+//creating appointment
 export const createAppointment = async (req, res) => {
   const appointment = await appointmentsService.createAppointment(req.user.id, req.body);
 
@@ -10,6 +11,7 @@ export const createAppointment = async (req, res) => {
   });
 };
 
+//get
 export const getMyAppointments = async (req, res) => {
   const appointments = await appointmentsService.getMyAppointments(req.user);
 
@@ -19,6 +21,7 @@ export const getMyAppointments = async (req, res) => {
   });
 };
 
+//delete
 export const cancelAppointment = async (req, res) => {
   const appointment = await appointmentsService.cancelAppointment(
     req.params.id,
@@ -32,6 +35,7 @@ export const cancelAppointment = async (req, res) => {
   });
 };
 
+//
 export const completeAppointment = async (req, res) => {
   const appointment = await appointmentsService.completeAppointment(
     req.params.id,

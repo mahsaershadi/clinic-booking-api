@@ -1,5 +1,6 @@
 import * as authService from './auth.service.js';
 
+//signing up
 export const register = async (req, res) => {
   const data = await authService.registerPatient(req.body);
 
@@ -10,6 +11,7 @@ export const register = async (req, res) => {
   });
 };
 
+//logging in
 export const login = async (req, res) => {
   const data = await authService.login(req.body);
 

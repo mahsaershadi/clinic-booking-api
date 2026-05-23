@@ -24,6 +24,7 @@ export const validate = (schema) => (req, _res, next) => {
   next();
 };
 
+//validate for body
 export const validateBody = (schema) => (req, _res, next) => {
   const result = schema.safeParse(req.body);
 
@@ -35,6 +36,7 @@ export const validateBody = (schema) => (req, _res, next) => {
   next();
 };
 
+//validate for params
 export const validateParams = (schema) => (req, _res, next) => {
   const result = schema.safeParse(req.params);
 
