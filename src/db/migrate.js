@@ -15,6 +15,7 @@ EXCEPTION
   WHEN duplicate_object THEN NULL;
 END $$;
 
+/*Users table*/
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   full_name VARCHAR(255) NOT NULL,
@@ -24,6 +25,7 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+/*Doctors table*/
 CREATE TABLE IF NOT EXISTS doctors (
   id SERIAL PRIMARY KEY,
   user_id INTEGER NOT NULL UNIQUE REFERENCES users(id) ON DELETE CASCADE,
@@ -33,6 +35,7 @@ CREATE TABLE IF NOT EXISTS doctors (
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
+/*Appointments table*/
 CREATE TABLE IF NOT EXISTS appointments (
   id SERIAL PRIMARY KEY,
   doctor_id INTEGER NOT NULL REFERENCES doctors(id) ON DELETE CASCADE,
@@ -44,6 +47,8 @@ CREATE TABLE IF NOT EXISTS appointments (
   CONSTRAINT appointments_doctor_start_unique UNIQUE (doctor_id, start_time)
 );
 
+
+/*Create indexes for the appointments table*/
 CREATE INDEX IF NOT EXISTS idx_appointments_patient_id ON appointments(patient_id);
 CREATE INDEX IF NOT EXISTS idx_appointments_doctor_id ON appointments(doctor_id);
 CREATE INDEX IF NOT EXISTS idx_appointments_status ON appointments(status);

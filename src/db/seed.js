@@ -11,6 +11,7 @@ const seedData = async () => {
     const doctorPassword = await hashPassword('Doctor@123');
     const patientPassword = await hashPassword('Patient@123');
 
+    //Admin
     const adminResult = await client.query(
       `INSERT INTO users (full_name, email, password_hash, role)
        VALUES ($1, $2, $3, 'ADMIN')
@@ -19,6 +20,7 @@ const seedData = async () => {
       ['System Admin', 'admin@clinic.com', adminPassword]
     );
 
+    //Doctor
     const doctorUserResult = await client.query(
       `INSERT INTO users (full_name, email, password_hash, role)
        VALUES ($1, $2, $3, 'DOCTOR')
@@ -26,7 +28,8 @@ const seedData = async () => {
        RETURNING id`,
       ['Dr. Sarah Johnson', 'doctor@clinic.com', doctorPassword]
     );
-
+    
+    //Patient
     await client.query(
       `INSERT INTO doctors (user_id, specialization, work_start, work_end)
        VALUES ($1, $2, $3, $4)
