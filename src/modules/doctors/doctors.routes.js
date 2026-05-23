@@ -8,8 +8,10 @@ import { createDoctorSchema } from './doctors.validation.js';
 
 const router = Router();
 
+//get all the docotrs
 router.get('/', authMiddleware, asyncHandler(doctorsController.listDoctors));
 
+//adding doctor
 router.post(
   '/',
   authMiddleware,

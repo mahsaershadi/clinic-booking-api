@@ -20,7 +20,7 @@ router.post(
   asyncHandler(appointmentsController.createAppointment)
 );
 
-//seeing appontment
+//seeing my appointments
 router.get(
   '/my',
   authMiddleware,

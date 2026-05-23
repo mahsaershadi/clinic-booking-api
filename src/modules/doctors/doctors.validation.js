@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const timeRegex = /^([01]\d|2[0-3]):([0-5]\d)$/;
 
+//creating doctor by admin
 export const createDoctorSchema = z.object({
   body: z
     .object({
